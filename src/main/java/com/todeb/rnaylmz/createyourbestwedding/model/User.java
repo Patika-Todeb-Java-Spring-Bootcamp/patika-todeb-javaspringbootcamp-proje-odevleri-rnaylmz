@@ -1,6 +1,6 @@
 package com.todeb.rnaylmz.createyourbestwedding.model;
 
-public class User {
+public abstract class User {
     private String name;
     private String surName;
     private String mail;
