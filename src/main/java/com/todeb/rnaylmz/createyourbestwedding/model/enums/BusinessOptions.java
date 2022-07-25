@@ -1,4 +1,4 @@
-package com.todeb.rnaylmz.createyourbestwedding.model;
+package com.todeb.rnaylmz.createyourbestwedding.model.enums;
 
 public enum BusinessOptions {
 

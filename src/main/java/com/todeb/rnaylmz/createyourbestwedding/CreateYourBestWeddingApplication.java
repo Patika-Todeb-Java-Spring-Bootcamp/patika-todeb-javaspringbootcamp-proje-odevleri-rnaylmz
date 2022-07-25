@@ -11,4 +11,4 @@ public class CreateYourBestWeddingApplication {
     }
 
 }
-//We don't change much this class. For other actions we create new classes.
+//We don't change much this class. For other actions we create new classes/interfaces.
