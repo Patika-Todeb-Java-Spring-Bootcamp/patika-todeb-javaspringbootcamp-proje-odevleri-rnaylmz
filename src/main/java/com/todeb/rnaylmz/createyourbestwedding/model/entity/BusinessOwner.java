@@ -5,9 +5,10 @@ import com.todeb.rnaylmz.createyourbestwedding.model.User;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class BusinessOwner extends User {
+public class BusinessOwner extends User implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
