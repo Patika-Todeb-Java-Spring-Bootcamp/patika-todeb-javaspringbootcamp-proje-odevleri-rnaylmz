@@ -1,29 +1,24 @@
 package com.todeb.rnaylmz.createyourbestwedding.model.entity;
 
-import com.todeb.rnaylmz.createyourbestwedding.model.enums.BusinessOptions;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import com.todeb.rnaylmz.createyourbestwedding.model.enums.Role;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BusinessOption implements Serializable {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private BusinessOptions title;
+    private Role title;
     private int howManyOwner;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
 }

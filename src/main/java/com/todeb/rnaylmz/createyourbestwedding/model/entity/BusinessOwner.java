@@ -1,28 +1,47 @@
 package com.todeb.rnaylmz.createyourbestwedding.model.entity;
 
-import com.todeb.rnaylmz.createyourbestwedding.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.io.Serializable;
 
+@Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BusinessOwner extends User implements Serializable {
+
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String firstName;
+    private String LastName;
+
+    @Email
+    private String email;
     private String address;
     private long IBAN;
     private double priceForJob;
 
-    public Long getId() {
-        return id;
-    }
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    private BusinessOption businessOption;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Customer customer;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Photograph photograph;
+
+
 
 }

@@ -1,21 +1,23 @@
 package com.todeb.rnaylmz.createyourbestwedding.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import net.bytebuddy.utility.dispatcher.JavaDispatcher;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
+
+@Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Photograph implements Serializable {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

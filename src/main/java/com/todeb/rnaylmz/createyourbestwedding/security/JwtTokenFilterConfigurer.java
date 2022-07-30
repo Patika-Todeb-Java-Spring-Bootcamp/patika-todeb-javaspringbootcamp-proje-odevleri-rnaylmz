@@ -1,6 +1,8 @@
 package com.todeb.rnaylmz.createyourbestwedding.security;
 
 import com.sun.org.apache.xerces.internal.parsers.SecurityConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 public class JwtTokenFilterConfigurer extends SecurityConfiguration {
 
@@ -10,7 +12,7 @@ public class JwtTokenFilterConfigurer extends SecurityConfiguration {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    @Override
+
     public void configure(HttpSecurity http) throws Exception {
         JwtTokenFilter customFilter = new JwtTokenFilter(jwtTokenProvider);
         http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,6 +1,7 @@
 package com.todeb.rnaylmz.createyourbestwedding.security;
 
 
+import com.todeb.rnaylmz.createyourbestwedding.model.enums.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -77,7 +78,16 @@ public class JwtTokenProvider {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-            throw new CustomJwtException("Expired or invalid JWT token", HttpStatus.INTERNAL_SERVER_ERROR);
+            try {
+                throw new CustomJwtException("Expired or invalid JWT token", HttpStatus.INTERNAL_SERVER_ERROR);
+            } catch (CustomJwtException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
+    private class CustomJwtException extends Throwable {
+        public CustomJwtException(String expired_or_invalid_jwt_token, HttpStatus internalServerError) {
         }
     }
 }
