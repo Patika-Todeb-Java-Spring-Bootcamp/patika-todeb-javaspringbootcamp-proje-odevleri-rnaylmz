@@ -16,10 +16,10 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Integer id;
 
     @Column(unique = true, nullable = false)
-    private String userName;
+    private String username;
 
 
     @Column(unique = true, nullable = false)
@@ -28,16 +28,16 @@ public class User {
     @Size(min = 6, message = "minimum password length has to be 6.")
     private String password;
 
-  public User(String userName, String email, String password ){
-      this.userName = userName;
+  public User(String username, String email, String password ){
+      this.username = username;
       this.email = email;
       this.password = password;
   }
 
   @ElementCollection(fetch = FetchType.EAGER)
-    private List<Role> optionsList;
+    private List<Role> roles;
 
-    public String getRoles() {
+    /*public List<Role> getRoles() {
         return getRoles();
-    }
+    }*/
 }
