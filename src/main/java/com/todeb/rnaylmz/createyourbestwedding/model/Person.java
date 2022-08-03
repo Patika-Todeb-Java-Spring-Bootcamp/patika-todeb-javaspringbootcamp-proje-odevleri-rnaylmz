@@ -11,5 +11,7 @@ public abstract class Person {
     private String name;
     private String surname;
     private String email;
+
+    //For customer writing area about wishes; for business owner writing area about
     private String biography;
 }

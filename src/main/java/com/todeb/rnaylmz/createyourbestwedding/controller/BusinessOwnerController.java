@@ -16,7 +16,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping
+@RequestMapping("/businessOwner")
 public class BusinessOwnerController {
 
     @Autowired

@@ -1,5 +1,6 @@
 package com.todeb.rnaylmz.createyourbestwedding.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +20,11 @@ public class Photograph implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
+    @ManyToOne
+    @JoinColumn(name = "business_owner_id")
+    private BusinessOwner businessOwner;
+
 
 }

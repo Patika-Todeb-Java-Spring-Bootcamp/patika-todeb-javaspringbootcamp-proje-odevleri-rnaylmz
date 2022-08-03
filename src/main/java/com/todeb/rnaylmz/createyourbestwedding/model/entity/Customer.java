@@ -19,11 +19,4 @@ public class Customer extends Person implements Serializable {
 
     @Id
     private Long id;
-
-    private String detailsAboutWishes;
-
-    private List<BusinessOwner> businessOwners;
-
-
-
 }

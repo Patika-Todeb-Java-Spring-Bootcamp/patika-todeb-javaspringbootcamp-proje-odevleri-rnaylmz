@@ -2,8 +2,6 @@ package com.todeb.rnaylmz.createyourbestwedding.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.todeb.rnaylmz.createyourbestwedding.model.Person;
-import com.todeb.rnaylmz.createyourbestwedding.model.enums.OwnerOption;
-import com.todeb.rnaylmz.createyourbestwedding.model.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,21 +19,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "businessOwner")
-public class BusinessOwner extends Person implements Serializable {
+public class  BusinessOwner extends Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
-    private String LastName;
-
-    @Email
-    private String email;
     private String address;
     private long IBAN;
-    private double priceForJob;
-    private String description;
+    private String education;
+
+    //private List<Photograph> photographs;
 
 
     @JsonIgnore
@@ -48,8 +42,10 @@ public class BusinessOwner extends Person implements Serializable {
 
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
-    private SelectOwner selectOwner;
+    private BusinessOption businessOption;
 
 
+    @ManyToOne(optional = false)
+    private Photograph photographs;
 
 }
