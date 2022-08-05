@@ -1,3 +1,4 @@
+/*
 package com.todeb.rnaylmz.createyourbestwedding.security;
 
 import com.sun.org.apache.xerces.internal.parsers.SecurityConfiguration;
@@ -18,3 +19,4 @@ public class JwtTokenFilterConfigurer extends SecurityConfiguration {
         http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
+*/

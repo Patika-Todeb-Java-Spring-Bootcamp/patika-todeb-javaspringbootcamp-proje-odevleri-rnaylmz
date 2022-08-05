@@ -10,17 +10,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public abstract class ICustomerRepository {
+public interface ICustomerRepository extends JpaRepository<Customer, Long> {
 
 
-    private List<Customer> customerList;
+    //private List<Customer> customerList;
 
 
-    public List<Customer> findAll() {
+   /* public List<Customer> findAll() {
         return customerList;
-    }
+    }*/
 
-    public Optional<Customer> getById(Long id) {
+   /* public Optional<Customer> getById(Long id) {
 
         Optional<Customer> customerOptional = customerList.stream().
                 filter(customer -> customer.getId().equals(id)).findFirst();
@@ -30,13 +30,13 @@ public abstract class ICustomerRepository {
 
     public Customer create(Customer customer){
          
-        boolean addStatus = customerList.add(Customer);
+        boolean addStatus = customerList.add(customer);
         if (!addStatus){
             return null;
         }
         return customer;
     }
-}
+}*/
 
        /* for(Customer customer: customerList){
             if(customer.getId().equals(id))
@@ -44,4 +44,4 @@ public abstract class ICustomerRepository {
         }
         return null;*/
 
-
+}

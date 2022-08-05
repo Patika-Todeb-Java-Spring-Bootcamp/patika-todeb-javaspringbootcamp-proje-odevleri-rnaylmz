@@ -18,8 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/businessOwner")
 public class BusinessOwnerController {
-
-    @Autowired
     private BusinessOwnerService businessOwnerService;
 
     @GetMapping("/all")

@@ -30,8 +30,10 @@ public class  BusinessOwner extends Person implements Serializable {
     private String education;
     private double point;
     private int countOfReview;
-    private List<OwnerOptions> ownerOptions;
 
+    /*@OneToOne(cascade = CascadeType.MERGE)
+    private List<OwnerOptions> ownerOptions;
+*/
     /*
       private List<Photograph> photographs;
       private List<Customer> customers;

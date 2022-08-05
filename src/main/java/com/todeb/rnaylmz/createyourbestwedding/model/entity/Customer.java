@@ -8,35 +8,35 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer extends Person implements Serializable {
+@Table(name = "customer")
+public class Customer extends Person {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private int giveLike;
     private int followBusinessOwner;
-
     private int givePoint;
 
-    private  static long idSequence = 1;
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    private List<BusinessOwner> businessOwners;
+
+
+  /*  private  static long idSequence = 1;
 
     public Customer(){
         this.id = ++idSequence;
-    }
+    }*/
+    //Entity içinde List tutulmaz. Bunun yerine ilişkiler kullanılır.
 
 
-
-    public int followBusinessOwner(){
-        return this.followBusinessOwner;
-    }
-    public int likePhotos(){
-        return this.giveLike;
-    }
 
 
 

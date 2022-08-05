@@ -11,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Validated
 @RestController
@@ -30,7 +29,7 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public ResponseEntity getCustomerByIs(@PathVariable("id") Long id) {
-        Optional<Customer> byId;
+        Customer byId;
         try {
             byId = customerService.getById(id);
         } catch (RuntimeException exception) {
@@ -44,10 +43,11 @@ public class CustomerController {
     public ResponseEntity createNewCustomer(@RequestBody CustomerDTO customer) {
 
         Customer responseCustomer = customerService.create(customer);
-        if(responseCustomer == null){
+        if (responseCustomer == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Customer could not be created successfully");
-        }
 
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseCustomer);
     }
 }
