@@ -1,7 +1,7 @@
 package com.todeb.rnaylmz.createyourbestwedding.model.entity;
 
 import lombok.Data;
-import com.todeb.rnaylmz.createyourbestwedding.model.enums.OwnerOption;
+import com.todeb.rnaylmz.createyourbestwedding.model.enums.OwnerOptions;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +19,7 @@ public class BusinessOption{
 
     private Double price;
 
-    private OwnerOption ownerOption;
+    private OwnerOptions ownerOptions;
 
 
 
@@ -27,7 +27,7 @@ public class BusinessOption{
 
     }
 
-    public enum OwnerOption {
+/*    public enum OwnerOption {
 
         MakeupArtist,
         Photographer,
@@ -36,7 +36,7 @@ public class BusinessOption{
         WeddingDressSeller,
         Florist,
 
-    }
+    }*/
 
 }
 

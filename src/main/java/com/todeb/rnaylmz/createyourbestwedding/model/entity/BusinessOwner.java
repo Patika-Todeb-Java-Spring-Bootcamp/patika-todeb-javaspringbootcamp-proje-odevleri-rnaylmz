@@ -2,13 +2,13 @@ package com.todeb.rnaylmz.createyourbestwedding.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.todeb.rnaylmz.createyourbestwedding.model.Person;
+import com.todeb.rnaylmz.createyourbestwedding.model.enums.OwnerOptions;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.List;
 
@@ -28,8 +28,14 @@ public class  BusinessOwner extends Person implements Serializable {
     private String address;
     private long IBAN;
     private String education;
+    private double point;
+    private int countOfReview;
+    private List<OwnerOptions> ownerOptions;
 
-    //private List<Photograph> photographs;
+    /*
+      private List<Photograph> photographs;
+      private List<Customer> customers;
+    */
 
 
     @JsonIgnore

@@ -8,15 +8,37 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @Entity
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer extends Person implements Serializable {
 
     @Id
     private Long id;
+
+    private int giveLike;
+    private int followBusinessOwner;
+
+    private int givePoint;
+
+    private  static long idSequence = 1;
+
+    public Customer(){
+        this.id = ++idSequence;
+    }
+
+
+
+    public int followBusinessOwner(){
+        return this.followBusinessOwner;
+    }
+    public int likePhotos(){
+        return this.giveLike;
+    }
+
+
+
+
 }
