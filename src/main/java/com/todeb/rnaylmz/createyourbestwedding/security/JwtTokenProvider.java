@@ -1,6 +1,7 @@
 package com.todeb.rnaylmz.createyourbestwedding.security;
 
 
+import com.todeb.rnaylmz.createyourbestwedding.exception.CustomJwtException;
 import com.todeb.rnaylmz.createyourbestwedding.model.enums.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -15,6 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
@@ -22,14 +24,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
+@Component
 public class JwtTokenProvider {
 
     @Value("${security.jwt.token.secret-key:default-key}")
     private String secretKey;
 
     @Value("${security.jwt.token.expire-time:100000}")
-    private long validityInMilliseconds; // = 1000 * 60 * 60 * 24; // 1 day
+    private long validityInMilliseconds;
 
     @Autowired
     private MyUserDetails myUserDetails;
@@ -78,16 +80,7 @@ public class JwtTokenProvider {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-            try {
-                throw new CustomJwtException("Expired or invalid JWT token", HttpStatus.INTERNAL_SERVER_ERROR);
-            } catch (CustomJwtException ex) {
-                throw new RuntimeException(ex);
-            }
-        }
-    }
-
-    private class CustomJwtException extends Throwable {
-        public CustomJwtException(String expired_or_invalid_jwt_token, HttpStatus internalServerError) {
+            throw new CustomJwtException("Expired or invalid JWT token", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

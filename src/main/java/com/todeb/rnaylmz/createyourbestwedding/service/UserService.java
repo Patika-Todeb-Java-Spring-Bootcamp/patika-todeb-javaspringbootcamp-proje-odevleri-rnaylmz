@@ -8,14 +8,14 @@ import com.todeb.rnaylmz.createyourbestwedding.repository.IUserRepository;
 import com.todeb.rnaylmz.createyourbestwedding.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
-import java.nio.file.AccessDeniedException;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +24,6 @@ import java.util.List;
 public class UserService {
 
     private final IUserRepository userRepository;
-
 
     private final PasswordEncoder passwordEncoder;
 
@@ -37,15 +36,17 @@ public class UserService {
     }
 
     public String signin(String username, String password) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-//            return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRoles());
-        return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRoles());
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRoles());
+        } catch (AuthenticationException e) {
+            throw new CustomJwtException("Invalid username/password supplied", HttpStatus.BAD_REQUEST);
+        }
     }
 
     public String signup(User user, boolean isAdmin) {
         if (!userRepository.existsByUsername(user.getUsername())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-//          Optional<Role> relatedRole = roleRepository.findByName(isAdmin ? "ROLE_ADMIN" : "ROLE_USER");
             Role role = isAdmin ? Role.ROLE_ADMIN : Role.ROLE_CLIENT;
             user.setRoles(Collections.singletonList(role));
             userRepository.save(user);
@@ -55,7 +56,7 @@ public class UserService {
         }
     }
 
-    public void delete(String username) throws AccessDeniedException {
+    public void delete(String username) {
         User byUsername = userRepository.findByUsername(username);
         if (byUsername == null) {
             throw new EntityNotFoundException("User", "username : " + username);

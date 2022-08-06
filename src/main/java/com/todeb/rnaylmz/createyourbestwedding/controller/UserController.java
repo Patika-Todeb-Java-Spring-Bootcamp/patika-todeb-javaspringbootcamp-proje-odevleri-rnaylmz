@@ -9,9 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @Validated
@@ -39,21 +37,13 @@ public class UserController {
         user.setUsername(userDataDTO.getUsername());
         user.setEmail(userDataDTO.getEmail());
         user.setPassword(userDataDTO.getPassword());
-//        return userService.signup(modelMapper.map(user, User.class));
         return userService.signup(user, false);
     }
 
-    //    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RolesAllowed("ROLE_ADMIN")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @DeleteMapping(value = "/delete/{username}")
     public String delete(@PathVariable String username) {
-        try {
-            userService.delete(username);
-        } catch (AccessDeniedException e) {
-            throw new RuntimeException(e);
-        }
+        userService.delete(username);
         return username;
-
-
     }
 }

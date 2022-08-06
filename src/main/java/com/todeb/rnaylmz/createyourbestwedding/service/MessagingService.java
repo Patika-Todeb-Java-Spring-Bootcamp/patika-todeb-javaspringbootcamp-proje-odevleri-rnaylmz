@@ -10,4 +10,10 @@ public class MessagingService {
 
     private IMessagingRepository messagingRepository;
 
+    public void sendMessage(){
+    }
+    public void replyMessage(){
+
+    }
+
 }

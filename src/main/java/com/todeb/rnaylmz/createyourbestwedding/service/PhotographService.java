@@ -1,5 +1,6 @@
 package com.todeb.rnaylmz.createyourbestwedding.service;
 
+import com.todeb.rnaylmz.createyourbestwedding.repository.IPhotographRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -7,5 +8,5 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PhotographService {
 
-    private final PhotographService photographService;
+    private final IPhotographRepository IPhotographRepository;
 }

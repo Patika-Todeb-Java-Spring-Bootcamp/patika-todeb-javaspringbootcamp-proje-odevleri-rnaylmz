@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,24 +22,13 @@ public class Customer extends Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     private int giveLike;
     private int followBusinessOwner;
     private int givePoint;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<BusinessOwner> businessOwners;
-
-
-  /*  private  static long idSequence = 1;
-
-    public Customer(){
-        this.id = ++idSequence;
-    }*/
-    //Entity içinde List tutulmaz. Bunun yerine ilişkiler kullanılır.
-
-
-
-
-
 
 }

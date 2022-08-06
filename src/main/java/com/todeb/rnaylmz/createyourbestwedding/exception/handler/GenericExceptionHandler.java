@@ -1,5 +1,7 @@
-package com.todeb.rnaylmz.createyourbestwedding.exception;
+package com.todeb.rnaylmz.createyourbestwedding.exception.handler;
 
+import com.todeb.rnaylmz.createyourbestwedding.exception.CustomJwtException;
+import com.todeb.rnaylmz.createyourbestwedding.exception.EntityNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.http.HttpStatus;
@@ -7,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 
 
-import javax.persistence.EntityNotFoundException;
+
 import java.util.Map;
 import java.util.HashMap;
 

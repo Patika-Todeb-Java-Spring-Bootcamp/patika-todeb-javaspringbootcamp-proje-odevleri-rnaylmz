@@ -2,20 +2,20 @@ package com.todeb.rnaylmz.createyourbestwedding.security;
 
 import com.todeb.rnaylmz.createyourbestwedding.model.entity.User;
 import com.todeb.rnaylmz.createyourbestwedding.repository.IUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-public class MyUserDetails {
+@Service
+@RequiredArgsConstructor
+public class MyUserDetails implements UserDetailsService {
 
     private final IUserRepository userRepository;
 
-    public MyUserDetails(IUserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(username);
+        User user = userRepository.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User '" + username + "' not found");

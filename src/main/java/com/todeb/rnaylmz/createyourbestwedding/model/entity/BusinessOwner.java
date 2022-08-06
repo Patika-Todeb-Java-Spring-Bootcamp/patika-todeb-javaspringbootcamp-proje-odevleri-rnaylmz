@@ -1,7 +1,9 @@
 package com.todeb.rnaylmz.createyourbestwedding.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.todeb.rnaylmz.createyourbestwedding.model.Person;
+
 import com.todeb.rnaylmz.createyourbestwedding.model.enums.OwnerOptions;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +11,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 
 
 @Data
@@ -19,26 +22,26 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "businessOwner")
-public class  BusinessOwner extends Person implements Serializable {
+public class  BusinessOwner extends Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String address;
     private long IBAN;
+
+    @NotNull(message = "Enter your address for suitable customers")
+    private String address;
+
+    @NotNull(message = "Add your education and certification info")
     private String education;
-    private double point;
-    private int countOfReview;
 
-    /*@OneToOne(cascade = CascadeType.MERGE)
-    private List<OwnerOptions> ownerOptions;
-*/
-    /*
-      private List<Photograph> photographs;
-      private List<Customer> customers;
-    */
 
+
+    @NotBlank(message = "Give a price for your job, you can make dail with customer on messaging later.")
+    private Double price;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "owner_option")
+    private OwnerOptions ownerOptions;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -47,13 +50,5 @@ public class  BusinessOwner extends Person implements Serializable {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Photograph photograph;
-
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
-    private BusinessOption businessOption;
-
-
-    @ManyToOne(optional = false)
-    private Photograph photographs;
 
 }

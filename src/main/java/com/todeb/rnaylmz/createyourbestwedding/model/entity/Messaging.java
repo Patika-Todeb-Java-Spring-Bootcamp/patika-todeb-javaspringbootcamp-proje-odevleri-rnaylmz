@@ -20,9 +20,5 @@ public class Messaging implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public void sendMessage(){
-    }
-    public void replyMessage(){
 
-    }
 }

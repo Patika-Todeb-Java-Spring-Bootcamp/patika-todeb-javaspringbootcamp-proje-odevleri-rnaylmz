@@ -1,6 +1,6 @@
 package com.todeb.rnaylmz.createyourbestwedding.config;
 
-import com.todeb.rnaylmz.createyourbestwedding.security.JwtTokenFilterConfigurer;
+
 import com.todeb.rnaylmz.createyourbestwedding.security.JwtTokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class WebSecurityConfig {
+
 
     private final JwtTokenProvider jwtTokenProvider;
 
