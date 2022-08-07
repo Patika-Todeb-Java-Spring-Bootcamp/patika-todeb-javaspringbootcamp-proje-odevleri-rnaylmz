@@ -22,7 +22,6 @@ public class SampleDataInitiliazer implements ApplicationRunner {
         User adminUser = new User("admin-user", "adminuser@mail.com", "pass1234");
 
         if (adminUser.getUsername() != null && !adminUser.getUsername().isEmpty()) {
-            // @NotNull && @NotEmpty = @NotBlank
         }
 
         if (!userRepository.existsByUsername(adminUser.getUsername())) {
